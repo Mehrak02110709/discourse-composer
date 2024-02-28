@@ -1,0 +1,25 @@
+<script type="text/discourse-plugin" version="0.8">
+  const currentLocale = I18n.currentLocale();
+  if (!I18n.translations[currentLocale].js.composer) {
+    I18n.translations[currentLocale].js.composer = {};
+  }
+  I18n.translations[currentLocale].js.composer.my_button_text = "number d threshold!";
+  I18n.translations[currentLocale].js.my_button_title = "Dice Button!";
+
+  api.onToolbarCreate(function(toolbar) {
+    toolbar.addButton({
+      trimLeading: true,
+      id: "dice",
+      group: "insertions",
+      icon: 'dice',
+      title: "haikaveh_dice",
+      perform: function(e) {
+        return e.applySurround(
+          '[wrap=dice]',
+          "[/wrap]",
+          "my_button_text"
+        );
+      }
+    });
+  });
+</script>
